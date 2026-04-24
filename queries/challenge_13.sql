@@ -17,4 +17,4 @@ FROM employees
 JOIN employee_territories USING (employee_id)
 JOIN territories USING (territory_id)
 GROUP BY employee_id, first_name, last_name
-ORDER BY COUNT(*) DESC, employee;
+ORDER BY COUNT(DISTINCT territory_description) DESC, employee;
