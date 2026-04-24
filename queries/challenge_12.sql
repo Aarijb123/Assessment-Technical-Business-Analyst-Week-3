@@ -8,3 +8,12 @@
 
 -- All values should be rounded to 2 d.p. for display (but otherwise kept at full precision)
 
+SELECT order_id,
+       ROUND(SUM(products.unit_price * quantity)::NUMERIC, 2) AS expected_price,
+       ROUND(SUM(order_details.unit_price * quantity * (1 - discount))::NUMERIC, 2) AS actual_price,
+       ROUND((SUM(products.unit_price * quantity) - SUM(order_details.unit_price * quantity * (1 - discount)))::NUMERIC, 2) AS price_difference
+FROM order_details
+JOIN products USING (product_id)
+GROUP BY order_id
+ORDER BY price_difference DESC
+LIMIT 5;
