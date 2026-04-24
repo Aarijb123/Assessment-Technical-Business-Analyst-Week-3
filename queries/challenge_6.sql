@@ -6,3 +6,10 @@
 
 -- Results should be sorted alphabetically by supplier and category.
 
+select company_name as supplier, category_name as category, cast(avg(unit_price) as int) as average_price
+from products
+join suppliers using (supplier_id)
+join categories using (category_id)
+where category_name ilike '%m%'
+group by company_name, category_name
+order by company_name, category_name;
