@@ -8,3 +8,10 @@
 
 -- When calculating the order price, ignore any discounts and use the warehouse-standard price for the products only
 
+select order_id, cast(sum(products.unit_price * quantity) as int) as total_price
+from order_details
+join products using (product_id)
+group by order_id
+having sum(products.unit_price * quantity) > (select max(unit_price) from products)
+order by order_id desc
+limit 10;
