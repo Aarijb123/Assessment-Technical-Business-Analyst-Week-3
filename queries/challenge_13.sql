@@ -10,10 +10,10 @@
 
 -- Territory lists should be lists, not concatenated strings
 
-select concat(first_name, ' ', last_name) as employee, array_agg(territory_description order by territory_description) as assigned_territories
-from employees
-join employee_territories using (employee_id)
-join territories using (territory_id)
-where territory_description not like '% %'
-group by employee_id
-order by count(territory_id) desc;      
+SELECT CONCAT(first_name, ' ', last_name) AS employee, 
+       ARRAY_AGG(territory_description ORDER BY territory_description) AS assigned_territories
+FROM employees
+JOIN employee_territories USING (employee_id)
+JOIN territories USING (territory_id)
+GROUP BY employee_id, first_name, last_name
+ORDER BY COUNT(territory_id) DESC, first_name, last_name;    
