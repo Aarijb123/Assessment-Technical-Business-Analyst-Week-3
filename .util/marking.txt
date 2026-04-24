@@ -3,6 +3,6 @@ platform linux -- Python 3.12.13, pytest-9.0.3, pluggy-1.6.0
 rootdir: /home/runner/work/Assessment-Technical-Business-Analyst-Week-3/Assessment-Technical-Business-Analyst-Week-3
 collected 43 items
 
-test_queries.py ............F............F.F..........FFFFF              [100%]
+test_queries.py ......................................F....              [100%]
 
-======================== 8 failed, 35 passed in 36.02s =========================
+======================== 1 failed, 42 passed in 26.15s =========================
